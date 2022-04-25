@@ -14,7 +14,7 @@ public class Foster {
 	private int fosterId;
 	@OneToOne
 	@JoinColumn(name="login_id")
-	private AllLogin login;
+	private Login login;
 	@Column
 	private String foster1FirstName;
 	@Column
@@ -47,7 +47,7 @@ public class Foster {
 
 	public Foster() {
 		fosterId = 0;
-		login = new AllLogin();
+		login = new Login();
 		foster1FirstName = "Jane";
 		foster1LastName = "Smith";
 		foster2FirstName = "John";
@@ -75,12 +75,12 @@ public class Foster {
 	}
 
 
-	public AllLogin getLogin() {
+	public Login getLogin() {
 		return login;
 	}
 
 
-	public void setLogin(AllLogin login) {
+	public void setLogin(Login login) {
 		this.login = login;
 	}
 

@@ -13,7 +13,7 @@ public class Volunteer {
 	private int volunteerId;
 	@OneToOne
 	@JoinColumn(name="login_id")
-	private AllLogin login;
+	private Login login;
 	@Column
 	private String firstName;
 	@Column
@@ -27,7 +27,7 @@ public class Volunteer {
 
 	public Volunteer() {
 		volunteerId = 0;
-		login = new AllLogin();
+		login = new Login();
 		firstName = "Jane";
 		lastName = "Smith";
 		phone = "(123)456-7890";
@@ -45,12 +45,12 @@ public class Volunteer {
 	}
 
 
-	public AllLogin getLogin() {
+	public Login getLogin() {
 		return login;
 	}
 
 
-	public void setLogin(AllLogin login) {
+	public void setLogin(Login login) {
 		this.login = login;
 	}
 

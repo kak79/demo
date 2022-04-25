@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Table(name="all_logins")
 @Entity
-public class AllLogin {
+public class Login {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int loginId;
@@ -26,7 +26,7 @@ public class AllLogin {
 	@Column(name = "psswrd")
 	private String password;
 
-	public AllLogin() {
+	public Login() {
 		loginId = 0;
 		volunteer = new Volunteer();
 		foster = new Foster();
@@ -85,7 +85,7 @@ public class AllLogin {
 
 	@Override
 	public String toString() {
-		return "AllLogin [loginId=" + loginId + ", volunteer=" + volunteer + ", foster=" + foster +
+		return "Login [loginId=" + loginId + ", volunteer=" + volunteer + ", foster=" + foster +
 				", owner=" + owner + ", username =" + username + ", password=" + password + " ]";
 	}
 
@@ -102,7 +102,7 @@ public class AllLogin {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AllLogin other = (AllLogin) obj;
+		Login other = (Login) obj;
 		return loginId == other.loginId && Objects.equals(foster, other.foster)
 				&& Objects.equals(volunteer, other.volunteer) && Objects.equals(owner, other.owner)
 				&& Objects.equals(username, other.username) && Objects.equals(password, other.password);

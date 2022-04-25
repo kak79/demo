@@ -13,7 +13,7 @@ public class Owner {
 	private int ownerId;
 	@OneToOne
 	@JoinColumn(name="login_id")
-	private AllLogin login;
+	private Login login;
 	@Column
 	private String owner1FirstName;
 	@Column
@@ -47,7 +47,7 @@ public class Owner {
 		
 	public Owner() {
 		ownerId = 0;
-		login = new AllLogin();
+		login = new Login();
 		owner1FirstName = "Cris";
 		owner1LastName = "Hawk";
 		owner2FirstName = "Amy";
@@ -73,11 +73,11 @@ public class Owner {
 		this.ownerId = ownerId;
 	}
 
-	public AllLogin getLogin() {
+	public Login getLogin() {
 		return login;
 	}
 
-	public void setLogin(AllLogin login) {
+	public void setLogin(Login login) {
 		this.login = login;
 	}
 
