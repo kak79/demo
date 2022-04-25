@@ -1,25 +1,20 @@
-package com.rescue.Pets.beans;
-
-
+package com.example.demo.beans;
 
 import java.util.Objects;
 
+import jakarta.persistence.*;
 import org.springframework.data.annotation.Id;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-
+@Table(name="typ")
 @Entity
-public class AnimalType {
+public class Type {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int typeId;
 	@Column
 	private String typeName;
 	
-	public AnimalType() {
+	public Type() {
 		typeId = 0;
 		typeName = "Dog";
 	}
@@ -42,7 +37,7 @@ public class AnimalType {
 
 	@Override
 	public String toString() {
-		return "AnimalType [typeId=" + typeId + ", typeName=" + typeName + "]";
+		return "Type [typeId=" + typeId + ", typeName=" + typeName + "]";
 	}
 
 	@Override
@@ -58,7 +53,7 @@ public class AnimalType {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AnimalType other = (AnimalType) obj;
+		Type other = (Type) obj;
 		return typeId == other.typeId && Objects.equals(typeName, other.typeName);
 	}
 	

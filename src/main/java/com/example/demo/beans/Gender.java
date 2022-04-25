@@ -1,6 +1,4 @@
-package com.rescue.Pets.beans;
-
-
+package com.example.demo.beans;
 
 import java.util.Objects;
 

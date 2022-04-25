@@ -1,23 +1,20 @@
-package com.rescue.Pets.beans;
+package com.example.demo.beans;
 
 
 
 import java.util.Objects;
 
+import jakarta.persistence.*;
 import org.springframework.data.annotation.Id;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-
 @Entity
-public class FosterInfo {
+public class Foster {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int fosterId;
-	@Column(name="usrnm")
-	private String username;
+	@OneToOne
+	@JoinColumn(name="login_id")
+	private AllLogin login;
 	@Column
 	private String foster1FirstName;
 	@Column
@@ -48,9 +45,9 @@ public class FosterInfo {
 	private String email2;
 	
 
-	public FosterInfo() {
+	public Foster() {
 		fosterId = 0;
-		username = "jjsmith";
+		login = new AllLogin();
 		foster1FirstName = "Jane";
 		foster1LastName = "Smith";
 		foster2FirstName = "John";
@@ -78,13 +75,13 @@ public class FosterInfo {
 	}
 
 
-	public String getUsername() {
-		return username;
+	public AllLogin getLogin() {
+		return login;
 	}
 
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setLogin(AllLogin login) {
+		this.login = login;
 	}
 
 
@@ -230,7 +227,7 @@ public class FosterInfo {
 
 	@Override
 	public String toString() {
-		return "FosterInfo [fosterId=" + fosterId + ", username=" + username + ", foster1FirstName=" + foster1FirstName
+		return "Foster [fosterId=" + fosterId + ", login=" + login + ", foster1FirstName=" + foster1FirstName
 				+ ", foster1LastName=" + foster1LastName + ", foster2FirstName=" + foster2FirstName
 				+ ", foster2LastName=" + foster2LastName + ", street1=" + street1 + ", street2=" + street2 + ", city="
 				+ city + ", state=" + state + ", zip=" + zip + ", phone1=" + phone1 + ", phone2=" + phone2 + ", fax="
@@ -241,7 +238,7 @@ public class FosterInfo {
 	@Override
 	public int hashCode() {
 		return Objects.hash(city, email1, email2, fax, foster1FirstName, foster1LastName, foster2FirstName,
-				foster2LastName, fosterId, phone1, phone2, state, street1, street2, username, zip);
+				foster2LastName, fosterId, phone1, phone2, state, street1, street2, login, zip);
 	}
 
 
@@ -253,7 +250,7 @@ public class FosterInfo {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		FosterInfo other = (FosterInfo) obj;
+		Foster other = (Foster) obj;
 		return Objects.equals(city, other.city) && Objects.equals(email1, other.email1)
 				&& Objects.equals(email2, other.email2) && Objects.equals(fax, other.fax)
 				&& Objects.equals(foster1FirstName, other.foster1FirstName)
@@ -262,7 +259,7 @@ public class FosterInfo {
 				&& Objects.equals(foster2LastName, other.foster2LastName) && fosterId == other.fosterId
 				&& Objects.equals(phone1, other.phone1) && Objects.equals(phone2, other.phone2)
 				&& Objects.equals(state, other.state) && Objects.equals(street1, other.street1)
-				&& Objects.equals(street2, other.street2) && Objects.equals(username, other.username)
+				&& Objects.equals(street2, other.street2) && Objects.equals(login, other.login)
 				&& zip == other.zip;
 	}
 

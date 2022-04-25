@@ -1,4 +1,4 @@
-package com.rescue.Pets.beans;
+package com.example.demo.beans;
 
 import java.util.Objects;
 
@@ -13,6 +13,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
+
 @Entity
 public class Pet {
 	@Id
@@ -22,7 +23,7 @@ public class Pet {
 	private String petName;
 	@ManyToOne
 	@JoinColumn(name="type_id")
-	private AnimalType type;
+	private Type type;
 	@ManyToOne
 	@JoinColumn(name="breed_id")
 	private Breed breed;
@@ -42,12 +43,12 @@ public class Pet {
 	private boolean fostered;
 	@OneToMany
 	@JoinColumn(name="foster_id")
-	private FosterInfo foster;
+	private Foster foster;
 	
 	public Pet() {
 		petId = 0;
 		petName = "Jill Frost";
-		type = new AnimalType();
+		type = new Type();
 		breed = new Breed();
 		ageMonths = 2;
 		ageYears = 0;
@@ -55,7 +56,7 @@ public class Pet {
 		adopted = false;
 		owner = new Owner();
 		fostered = true;
-		foster = new FosterInfo();
+		foster = new Foster();
 	}
 
 	public int getPetId() {
@@ -74,11 +75,11 @@ public class Pet {
 		this.petName = petName;
 	}
 
-	public AnimalType getType() {
+	public Type getType() {
 		return type;
 	}
 
-	public void setType(AnimalType type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 
@@ -138,11 +139,11 @@ public class Pet {
 		this.fostered = fostered;
 	}
 
-	public FosterInfo getFoster() {
+	public Foster getFoster() {
 		return foster;
 	}
 
-	public void setFoster(FosterInfo foster) {
+	public void setFoster(Foster foster) {
 		this.foster = foster;
 	}
 
@@ -173,7 +174,7 @@ public class Pet {
 				&& Objects.equals(owner, other.owner) && petId == other.petId && Objects.equals(petName, other.petName)
 				&& Objects.equals(type, other.type);
 	}
-	
+
 	
 }
 

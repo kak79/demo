@@ -1,23 +1,19 @@
-package com.rescue.Pets.beans;
-
-
+package com.example.demo.beans;
 
 import java.util.Objects;
 
+import jakarta.persistence.*;
 import org.springframework.data.annotation.Id;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-
+@Table(name="own_r")
 @Entity
 public class Owner {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ownerId;
-	@Column(name="usrnm")
-	private String username;
+	@OneToOne
+	@JoinColumn(name="login_id")
+	private AllLogin login;
 	@Column
 	private String owner1FirstName;
 	@Column
@@ -51,7 +47,7 @@ public class Owner {
 		
 	public Owner() {
 		ownerId = 0;
-		username = "hawks";
+		login = new AllLogin();
 		owner1FirstName = "Cris";
 		owner1LastName = "Hawk";
 		owner2FirstName = "Amy";
@@ -77,12 +73,12 @@ public class Owner {
 		this.ownerId = ownerId;
 	}
 
-	public String getUsername() {
-		return username;
+	public AllLogin getLogin() {
+		return login;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setLogin(AllLogin login) {
+		this.login = login;
 	}
 
 	public String getOwner1FirstName() {
@@ -207,7 +203,7 @@ public class Owner {
 
 	@Override
 	public String toString() {
-		return "Owner [ownerId=" + ownerId + ", username=" + username + ", owner1FirstName=" + owner1FirstName
+		return "Owner [ownerId=" + ownerId + ", login=" + login + ", owner1FirstName=" + owner1FirstName
 				+ ", owner1LastName=" + owner1LastName + ", owner2FirstName=" + owner2FirstName + ", owner2LastName="
 				+ owner2LastName + ", street1=" + street1 + ", street2=" + street2 + ", city=" + city + ", state="
 				+ state + ", zip=" + zip + ", phone1=" + phone1 + ", phone2=" + phone2 + ", fax=" + fax + ", email1="
@@ -217,7 +213,7 @@ public class Owner {
 	@Override
 	public int hashCode() {
 		return Objects.hash(city, email1, email2, fax, owner1FirstName, owner1LastName, owner2FirstName, owner2LastName,
-				ownerId, phone1, phone2, state, street1, street2, username, website, zip);
+				ownerId, phone1, phone2, state, street1, street2, login, website, zip);
 	}
 
 	@Override
@@ -237,7 +233,7 @@ public class Owner {
 				&& Objects.equals(owner2LastName, other.owner2LastName) && ownerId == other.ownerId
 				&& Objects.equals(phone1, other.phone1) && Objects.equals(phone2, other.phone2)
 				&& Objects.equals(state, other.state) && Objects.equals(street1, other.street1)
-				&& Objects.equals(street2, other.street2) && Objects.equals(username, other.username)
+				&& Objects.equals(street2, other.street2) && Objects.equals(login, other.login)
 				&& Objects.equals(website, other.website) && zip == other.zip;
 	}
 

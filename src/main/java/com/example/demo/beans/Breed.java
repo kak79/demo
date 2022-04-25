@@ -1,4 +1,4 @@
-package com.rescue.Pets.beans;
+package com.example.demo.beans;
 
 
 
