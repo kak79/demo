@@ -7,21 +7,26 @@ import org.springframework.data.annotation.Id;
 
 @Table(name="own_r")
 @Entity
-public class Owner {
+public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int ownerId;
-	@OneToOne
-	@JoinColumn(name="login_id")
-	private Login login;
+	private int userId;
+
+//	username varchar(30) not null unique,
+//	psswrd varchar(10) not null,
+//	pet_owner bool,
+//	foster_parent bool,
+//	pet_volunteer bool,
+
+
 	@Column
-	private String owner1FirstName;
+	private String user1FirstName;
 	@Column
-	private String owner1LastName;
+	private String user1LastName;
 	@Column
-	private String owner2FirstName;
+	private String user2FirstName;
 	@Column
-	private String owner2LastName;
+	private String user2LastName;
 	@Column
 	private String street1;
 	@Column
@@ -45,13 +50,13 @@ public class Owner {
 	@Column
 	private String website;
 		
-	public Owner() {
-		ownerId = 0;
-		login = new Login();
-		owner1FirstName = "Cris";
-		owner1LastName = "Hawk";
-		owner2FirstName = "Amy";
-		owner2LastName = "Hawk";
+	public User() {
+		userId = 0;
+
+		user1FirstName = "Cris";
+		user1LastName = "Hawk";
+		user2FirstName = "Amy";
+		user2LastName = "Hawk";
 		street1 = "9 Hoard Drive";
 		street2 = "# 4529";
 		city = "Irvine";
@@ -65,52 +70,52 @@ public class Owner {
 		website = "http://www.hawksistersanimalrescue.com";
 	}
 
-	public int getOwnerId() {
-		return ownerId;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setOwnerId(int ownerId) {
-		this.ownerId = ownerId;
+	public void setUserId(int ownerId) {
+		this.userId = ownerId;
 	}
 
-	public Login getLogin() {
-		return login;
+//	public Login getLogin() {
+//		return login;
+//	}
+//
+//	public void setLogin(Login login) {
+//		this.login = login;
+//	}
+
+	public String getUser1FirstName() {
+		return user1FirstName;
 	}
 
-	public void setLogin(Login login) {
-		this.login = login;
+	public void setUser1FirstName(String owner1FirstName) {
+		this.user1FirstName = owner1FirstName;
 	}
 
-	public String getOwner1FirstName() {
-		return owner1FirstName;
+	public String getUser1LastName() {
+		return user1LastName;
 	}
 
-	public void setOwner1FirstName(String owner1FirstName) {
-		this.owner1FirstName = owner1FirstName;
+	public void setUser1LastName(String owner1LastName) {
+		this.user1LastName = owner1LastName;
 	}
 
-	public String getOwner1LastName() {
-		return owner1LastName;
+	public String getUser2FirstName() {
+		return user2FirstName;
 	}
 
-	public void setOwner1LastName(String owner1LastName) {
-		this.owner1LastName = owner1LastName;
+	public void setUser2FirstName(String owner2FirstName) {
+		this.user2FirstName = owner2FirstName;
 	}
 
-	public String getOwner2FirstName() {
-		return owner2FirstName;
+	public String getUser2LastName() {
+		return user2LastName;
 	}
 
-	public void setOwner2FirstName(String owner2FirstName) {
-		this.owner2FirstName = owner2FirstName;
-	}
-
-	public String getOwner2LastName() {
-		return owner2LastName;
-	}
-
-	public void setOwner2LastName(String owner2LastName) {
-		this.owner2LastName = owner2LastName;
+	public void setUser2LastName(String owner2LastName) {
+		this.user2LastName = owner2LastName;
 	}
 
 	public String getStreet1() {
@@ -203,17 +208,17 @@ public class Owner {
 
 	@Override
 	public String toString() {
-		return "Owner [ownerId=" + ownerId + ", login=" + login + ", owner1FirstName=" + owner1FirstName
-				+ ", owner1LastName=" + owner1LastName + ", owner2FirstName=" + owner2FirstName + ", owner2LastName="
-				+ owner2LastName + ", street1=" + street1 + ", street2=" + street2 + ", city=" + city + ", state="
+		return "User [userId=" + userId +  ", user1FirstName=" + user1FirstName
+				+ ", user1LastName=" + user1LastName + ", user2FirstName=" + user2FirstName + ", user2LastName="
+				+ user2LastName + ", street1=" + street1 + ", street2=" + street2 + ", city=" + city + ", state="
 				+ state + ", zip=" + zip + ", phone1=" + phone1 + ", phone2=" + phone2 + ", fax=" + fax + ", email1="
 				+ email1 + ", email2=" + email2 + ", website=" + website + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(city, email1, email2, fax, owner1FirstName, owner1LastName, owner2FirstName, owner2LastName,
-				ownerId, phone1, phone2, state, street1, street2, login, website, zip);
+		return Objects.hash(city, email1, email2, fax, user1FirstName, user1LastName, user2FirstName, user2LastName,
+				userId, phone1, phone2, state, street1, street2, website, zip);
 	}
 
 	@Override
@@ -224,16 +229,16 @@ public class Owner {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Owner other = (Owner) obj;
+		User other = (User) obj;
 		return Objects.equals(city, other.city) && Objects.equals(email1, other.email1)
 				&& Objects.equals(email2, other.email2) && Objects.equals(fax, other.fax)
-				&& Objects.equals(owner1FirstName, other.owner1FirstName)
-				&& Objects.equals(owner1LastName, other.owner1LastName)
-				&& Objects.equals(owner2FirstName, other.owner2FirstName)
-				&& Objects.equals(owner2LastName, other.owner2LastName) && ownerId == other.ownerId
+				&& Objects.equals(user1FirstName, other.user1FirstName)
+				&& Objects.equals(user1LastName, other.user1LastName)
+				&& Objects.equals(user2FirstName, other.user2FirstName)
+				&& Objects.equals(user2LastName, other.user2LastName) && userId == other.userId
 				&& Objects.equals(phone1, other.phone1) && Objects.equals(phone2, other.phone2)
 				&& Objects.equals(state, other.state) && Objects.equals(street1, other.street1)
-				&& Objects.equals(street2, other.street2) && Objects.equals(login, other.login)
+				&& Objects.equals(street2, other.street2)
 				&& Objects.equals(website, other.website) && zip == other.zip;
 	}
 

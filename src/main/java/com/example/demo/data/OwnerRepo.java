@@ -1,6 +1,5 @@
 package com.example.demo.data;
 
-import com.example.demo.beans.Foster;
 import com.example.demo.beans.Owner;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

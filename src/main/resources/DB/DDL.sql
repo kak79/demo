@@ -1,10 +1,7 @@
 
 drop table if exists pet cascade;
 drop table if exists gender cascade;
-drop table if exists all_logins cascade;
-drop table if exists volunteer cascade;
-drop table if exists foster cascade;
-drop table if exists own_r cascade;
+drop table if exists use_r cascade;
 drop table if exists typ cascade;
 drop table if exists breed cascade;
 
@@ -20,13 +17,17 @@ create table if not exists typ (
 	type_name varchar(45) not null
 );
 
-create table if not exists own_r (
-	owner_id serial primary key unique not null,
-	login_id integer ,
-	owner1_first_name varchar(45) not null,
-	owner1_last_name varchar(45) not null,
-	owner2_first_name varchar(45),
-	owner2_last_name varchar(45),
+create table if not exists use_r (
+	user_id serial primary key unique not null,
+	username varchar(30) not null unique,
+	psswrd varchar(10) not null,
+	pet_owner bool,
+	foster_parent bool,
+	pet_volunteer bool,
+	user1_first_name varchar(45) not null,
+	user1_last_name varchar(45) not null,
+	user2_first_name varchar(45),
+	user2_last_name varchar(45),
 	street1 varchar(50) not null,
 	street2 varchar(50),
 	city varchar(50) not null,
@@ -38,43 +39,6 @@ create table if not exists own_r (
 	email1 varchar(50) not null,
 	email2 varchar(50),
 	website varchar(100)
-);
-
-create table if not exists foster (
-	foster_id serial primary key unique not null,
-	login_id integer ,
-	foster1_first_name varchar(45) not null,
-	foster1_last_name varchar(45) not null,
-	foster2_first_name varchar(45),
-	foster2_last_name varchar(45),
-	street1 varchar(50) not null,
-	street2 varchar(50),
-	city varchar(50) not null,
-	state varchar(50) not null,
-	zip integer not null,
-	phone1 varchar(50) not null,
-	phone2 varchar(50),
-	fax varchar(50),
-	email1 varchar(50) not null,
-	email2 varchar(50)
-);
-
-create table if not exists volunteer (
-	volunteer_id serial primary key unique not null,
-	login_id integer ,
-	first_name varchar(45) not null,
-	last_name varchar(45) not null,
-	phone varchar(50) not null,
-	email varchar(50) not null
-);
-
-create table if not exists all_logins (
-	login_id serial primary key unique not null,
-	volunteer_id integer references volunteer,
-	foster_id integer references foster,
-	owner_id integer references own_r,
-	usrnm varchar(30) unique not null,
-	psswrd varchar(15) not null
 );
 
 create table if not exists gender (
@@ -91,9 +55,8 @@ create table if not exists pet (
 	age_years integer,
 	gender_id integer references gender,
 	adopted bool,
-	owner_id integer references own_r,
 	fostered bool,
-	foster_id integer references foster
+	user_id integer references use_r
 );
 
 
@@ -101,17 +64,4 @@ create table if not exists pet (
 
 
 
-alter table own_r  
-add constraint login_id
-foreign key (login_id)
-references all_logins (login_id);
 
-alter table foster  
-add constraint login_id
-foreign key (login_id)
-references all_logins (login_id);
-
-alter table volunteer 
-add constraint login_id
-foreign key (login_id)
-references all_logins (login_id);
